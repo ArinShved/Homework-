@@ -1,0 +1,1 @@
+**Homework on the topic “OOP: abstraction and encapsulation”**
