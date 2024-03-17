@@ -1,20 +1,40 @@
 ﻿#include <iostream>
 #include <string>
 
+class Figure {
+public:
+	Figure() {
+		name = "Фигура ";
+		numOfSides = 0;
+	}
+	std::string const getName() {
+		return name;
+	}
+	virtual void print() {
+		std::cout << name << "\n " << "Количество сторон: " << numOfSides << "\n";
+	}
+protected:
+	int numOfSides;
+	std::string name;
 
-class Triangle {
+};
+class Triangle : public Figure {
 public:
 	Triangle(int a, int b, int c, int A, int B, int C) {
 		name = "Треугольник";
+		numOfSides = 3;
 		this->a = a;
 		this->b = b;
 		this->c = c;
 		this->A = A;
 		this->B = B;
-		this->C = C;	
+		this->C = C;
 	}
-	std::string const getName() {
-		return name;
+
+	void print() override {
+		std::cout << name << "\n" <<
+			"Стороны: a = " << a << ", b = " << b << ", c = " << c << "\n"
+			<< "Углы: A = " << A << ", B = " << B << ", C = " << C << "\n" << "\n";
 	}
 	int const geta() {
 		return a;
@@ -36,7 +56,6 @@ public:
 	}
 	
 protected:
-	std::string name;
 	int a, b, c;//length
 	int A, B, C;//angle
 };
@@ -62,10 +81,11 @@ public:
 	}
 };
 
-class Quadrangle {
+class Quadrangle : public Figure {
 public:
 	Quadrangle(int a, int b, int c, int d, int A, int B, int C, int D) {
 		name = "Четырехугольник";
+		numOfSides = 4;
 		this->a = a;
 		this->b = b;
 		this->c = c;
@@ -75,8 +95,10 @@ public:
 		this->C = C;
 		this->D = D;
 	}
-	std::string const getName() {
-		return name;
+	void print() override {
+		std::cout << name << "\n" <<
+			"Стороны: a = " << a << ", b = " << b << ", c = " << c << ", d = " << d << "\n"
+			<< "Углы: A = " << A << ", B = " << B << ", C = " << C << ", D = " << D << "\n" << "\n";
 	}
 	int const geta() {
 		return a;
@@ -104,7 +126,6 @@ public:
 	}
 
 protected:
-	std::string name;
 	int a, b, c, d;//length
 	int A, B, C, D;//angle
 };
@@ -137,48 +158,40 @@ public:
 	}
 };
 
-
-void printInfoT(Triangle* triangle) {
-	std::cout << triangle->getName() << "\n"
-		"Стороны: a = " << triangle->geta() << ", b = " << triangle->getb() << ", c = " << triangle->getc() << "\n"
-		<< "Углы: A = " << triangle->getA() << ", B = " << triangle->getB() << ", C = " << triangle->getC() << "\n" << "\n";
-}
-void printInfoQ(Quadrangle* quadrangle) {
-	std::cout << quadrangle->getName() << "\n"
-		"Стороны: a = " << quadrangle->geta() << ", b = " << quadrangle->getb() << ", c = " << quadrangle->getc() << ", d = " << quadrangle->getd() << "\n"
-		<< "Углы: A = " << quadrangle->getA() << ", B = " << quadrangle->getB() << ", C = " << quadrangle->getC() << ", D = " << quadrangle->getD() << "\n" << "\n";
+void printInfo(Figure* figure) {
+	figure->print();
 }
 
 int main() {
 	setlocale(LC_ALL, "rus");
 	
 	Triangle triangle(10,20,30,40,50,60);
-	printInfoT(&triangle);
+	printInfo(&triangle);
 
 	IsoscelesTriangle isoTriangle(10, 20, 30, 40);
-	printInfoT(&isoTriangle);
+	printInfo(&isoTriangle);
 
 	EquilateralTriangle equilTriangle(10, 20);
-	printInfoT(&equilTriangle);
+	printInfo(&equilTriangle);
 
 	RightTriangle rTriangle(10,20,30,40,50);
-	printInfoT(&rTriangle);
+	printInfo(&rTriangle);
 
 	
 	Quadrangle quadrangle(10,20,30,40,50,60,70,80);
-	printInfoQ(&quadrangle);
+	printInfo(&quadrangle);
 
 	Rectangle rectangle(10,20);
-	printInfoQ(&rectangle);
+	printInfo(&rectangle);
 
 	Square square(10);
-	printInfoQ(&square);
+	printInfo(&square);
 
 	Parallelogram parallelogram(10,20,30,40);
-	printInfoQ(&parallelogram);
+	printInfo(&parallelogram);
 
 	Rhombus rhombus(10,20,30);
-	printInfoQ(&rhombus);
+	printInfo(&rhombus);
 
 
 	return 0;
