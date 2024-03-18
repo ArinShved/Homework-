@@ -1,7 +1,7 @@
 #include "quadrangle.h"
 
 Quadrangle::Quadrangle(int a, int b, int c, int d, int A, int B, int C, int D) {
-	name = "×åòûğåõóãîëüíèê";
+	name = "Ğ§ĞµÑ‚Ñ‹Ñ€ĞµÑ…ÑƒĞ³Ğ¾Ğ»ÑŒĞ½Ğ¸Ğº";
 	numOfSides = 4;
 	this->a = a;
 	this->b = b;
@@ -14,8 +14,8 @@ Quadrangle::Quadrangle(int a, int b, int c, int d, int A, int B, int C, int D) {
 }
 void Quadrangle::print(){
 	std::cout << name << "\n" <<
-		"Ñòîğîíû: a = " << a << ", b = " << b << ", c = " << c << ", d = " << d << "\n"
-		<< "Óãëû: A = " << A << ", B = " << B << ", C = " << C << ", D = " << D << "\n" << "\n";
+		"Ğ¡Ñ‚Ğ¾Ñ€Ğ¾Ğ½Ñ‹: a = " << a << ", b = " << b << ", c = " << c << ", d = " << d << "\n"
+		<< "Ğ£Ğ³Ğ»Ñ‹: A = " << A << ", B = " << B << ", C = " << C << ", D = " << D << "\n" << "\n";
 }
 int const Quadrangle::geta() {
 	return a;

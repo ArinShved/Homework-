@@ -21,15 +21,15 @@ void choosingCommand(Counter& counter, char users_response)
         counter.showCounter();
         break;
     }
-    case 'õ':
+    case 'Ñ…':
     {
-        std::cout << "Äî ñâèäàíèÿ! ";
+        std::cout << "Ð”Ð¾ ÑÐ²Ð¸Ð´Ð°Ð½Ð¸Ñ!";
         break;
 
     }
     default:
     {
-        std::cout << "Îøèáêà " << "\n";
+        std::cout << "ÐžÑˆÐ¸Ð±ÐºÐ°!" << "\n";
         break;
 
     }

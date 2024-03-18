@@ -2,7 +2,7 @@
 
 
     Triangle::Triangle(int a, int b, int c, int A, int B, int C) {
-		name = "Òðåóãîëüíèê";
+		name = "Ð¢Ñ€ÐµÑƒÐ³Ð¾Ð»ÑŒÐ½Ð¸Ðº";
 		numOfSides = 3;
 		this->a = a;
 		this->b = b;
@@ -14,8 +14,8 @@
 
 	void Triangle::print()  {
 		std::cout << name << "\n" <<
-			"Ñòîðîíû: a = " << a << ", b = " << b << ", c = " << c << "\n"
-			<< "Óãëû: A = " << A << ", B = " << B << ", C = " << C << "\n" << "\n";
+			"Ð¡Ñ‚Ð¾Ñ€Ð¾Ð½Ñ‹: a = " << a << ", b = " << b << ", c = " << c << "\n"
+			<< "Ð£Ð³Ð»Ñ‹: A = " << A << ", B = " << B << ", C = " << C << "\n" << "\n";
 	}
 	int const Triangle::geta() {
 		return a;
