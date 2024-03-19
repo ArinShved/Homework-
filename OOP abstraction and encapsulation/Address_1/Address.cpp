@@ -5,51 +5,58 @@
 
 class Address {
 private:
-	std::string num;
-	std::vector<std::string> city;
-	std::vector<std::string> street;
-	std::vector<std::string> houseNum;
-	std::vector<std::string> flatNum;
+	std::string city;
+	std::string street;
+	int houseNum;
+	int flatNum;
 public:
-	Address(std::string fileName){ 
-		std::ifstream file(fileName);
-		if (file.is_open()) {
-			file >> num;
-			for (int i = 0; i < std::stoi(num); i++) {
-				std::string a, a1, a2, a3;
-				file >> a;
-				file >> a1;
-				file >> a2;
-				file >> a3;;
-				city.push_back(a);
-				street.push_back(a1);
-				houseNum.push_back(a2);
-				flatNum.push_back(a3);
-			}
-		}
-		file.close();
-
+	Address(std::string city, std::string street, int houseNum, int flatNum) {
+		this->city = city;
+		this->street = street;
+		this->houseNum = houseNum;
+		this->flatNum = flatNum;
 	}
-
-	void writeInFile(std::string fileName){
-		std::ofstream file;
-		file.open(fileName);
-		if (file.is_open()) {
-			file << num << "\n";
-			for (int i = std::stoi(num) - 1; i >= 0; i--) {
-				file << city[i] << ", " << street[i] << ", " << houseNum[i] << ", " << flatNum[i] << "\n";
-			}
-		}
-		file.close();
+	std::string getAddress()
+	{
+		return city + ", " + street + ", " + std::to_string(houseNum) + ", " + std::to_string(flatNum) + "\n";
 	}
-
 };
+
+void writeToFile(std::string fileName, std::vector<Address> allAddresses, int num){
+	std::ofstream file_2;
+	file_2.open(fileName);
+	if (file_2.is_open()) {
+		file_2 << num << "\n";
+		for (int i = num - 1; i >= 0; i--) {
+			file_2 << allAddresses[i].getAddress();
+		}
+	}
+	file_2.close();
+}
 
 
 int main(){
+	int num = 0;
+	
+	std::vector<Address> allAddresses{};
+	std::ifstream file("in.txt");
+	if (file.is_open()) {
+		file >> num;
+		for(int i = 0; i < num; i++){
+		    std::string city, street;
+			int houseNum, flatNum;
+	    	file >> city;
+		    file >> street;
+		    file >> houseNum;
+	    	file >> flatNum;
+	    	Address address(city, street, houseNum, flatNum);
+	    	allAddresses.push_back(address);
+		}
+		file.close();
+	}
 
-	Address address("in.txt");
-	address.writeInFile("out.txt");
+	
+	writeToFile("out.txt", allAddresses, num);
 
 	return 0;
 }
