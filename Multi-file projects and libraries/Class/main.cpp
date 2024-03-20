@@ -1,7 +1,7 @@
 #include <iostream>
 #include <windows.h>
 
-#include "header.h"
+#include "class.h"
 
 int main() {
 	SetConsoleCP(1251);
@@ -11,21 +11,26 @@ int main() {
 	char a;
 	int count;
 
-	Counter c; 
+	Counter* c = nullptr; 
 	std::cout << "Вы хотите указать начальное значение счётчика? Введите да или нет: ";
 	std::cin >> answer;
-	if (answer == "да"|| answer == "Да"|| answer == "ДА") {
+	if (answer == "да") {
 		std::cout << "Введите начальное значение счётчика: ";
 		std::cin >> count;
-		c = Counter(count); 
+		c = new Counter(count);
+	}
+	else
+	{
+		c = new Counter();
 	}
 
 	do {
 		std::cout << "Введите команду ('+', '-', '=' или 'x'): ";
 		std::cin >> a;
-		choosingCommand(c, a);
+		choosingCommand(*c, a);
 	} while (a != 'х');
 
+	delete c;
 
 	return 0;
 }

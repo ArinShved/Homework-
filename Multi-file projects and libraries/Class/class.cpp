@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "header.h"
+#include "class.h"
 
 
     int Counter::increaseCounter(){

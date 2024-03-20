@@ -1,5 +1,5 @@
 #include <iostream>
-#include "header.h"
+#include "class.h"
 
 
 void choosingCommand(Counter& counter, char users_response)
@@ -23,13 +23,13 @@ void choosingCommand(Counter& counter, char users_response)
     }
     case 'х':
     {
-        std::cout << "До свидания!";
+        std::cout << "До свидания! ";
         break;
 
     }
     default:
     {
-        std::cout << "Ошибка!" << "\n";
+        std::cout << "Ошибка " << "\n";
         break;
 
     }
