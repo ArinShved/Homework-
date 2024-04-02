@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{16ed2c35-335e-4e8d-b824-06f53da70ac9}</ProjectGuid>
-    <RootNamespace>Preprocessordirectives</RootNamespace>
+    <ProjectGuid>{bff424f2-4f43-4b91-94c5-d59cf3d0f242}</ProjectGuid>
+    <RootNamespace>Preprocessordirectivesnew</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Preprocessor directives.cpp" />
+    <ClCompile Include="Preprocessor directives new.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
