@@ -1,6 +1,6 @@
 ﻿#include <iostream>
 #include <Windows.h>
-#include "greeter.h"
+#include "Greeter.h"
 
 int main()
 {
