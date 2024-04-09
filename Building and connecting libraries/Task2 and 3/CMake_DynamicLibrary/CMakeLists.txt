@@ -6,12 +6,10 @@ if (POLICY CMP0141)
 endif()
 
 project ("CMake_DynamicLibrary")
+add_executable (CMake_DynamicLibrary "CMake_DynamicLibrary.cpp" "CMake_DynamicLibrary.h")
+
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
 add_library(Dunamiclibrary SHARED leaver.cpp leaver.h )
 
-add_executable (CMake_DynamicLibrary "CMake_DynamicLibrary.cpp" "CMake_DynamicLibrary.h")
 target_link_libraries(CMake_DynamicLibrary Dunamiclibrary)
-
-if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET CMake_DynamicLibrary PROPERTY CXX_STANDARD 20)
-endif()
