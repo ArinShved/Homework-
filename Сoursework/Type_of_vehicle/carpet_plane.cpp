@@ -1,9 +1,9 @@
 #include "carpet_plane.h"
 
 CarpetPlane::CarpetPlane() : AirV() {
-	name = "Ковёр-самолёт";
-	speed = 10;
-	reduction = 0;
+	this->name = "Ковёр-самолёт";
+	this->speed = 10;
+	this->reduction = 0;
 }
 
 double CarpetPlane::changeOfDist(int distance) {

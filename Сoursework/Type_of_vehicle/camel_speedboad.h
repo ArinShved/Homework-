@@ -4,7 +4,7 @@
 
 class CamelSpB : public Camel {
 public:
-	CamelSpB();
-	double changeOfTime(int i) override;
+	TYPE_OF_VEHICLE_API CamelSpB();
+	TYPE_OF_VEHICLE_API double changeOfTime(int i) override;
 
 };

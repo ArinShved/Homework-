@@ -1,10 +1,10 @@
 #include "ground_vehicle.h"
 
 GroundV::GroundV() {
-	name = "Наземный транспорт";
-	speed = 0;
-	rest = 0;
-	time_b_rest = 0;
+	this->name = "Наземный транспорт";
+	this->speed = 0;
+	this->rest = 0;
+	this->time_b_rest = 0;
 }
 
 double GroundV::changeOfTime(int i) {
@@ -19,5 +19,7 @@ double GroundV::race(int dist) {
 	int rest_num = dist / time_b_rest;
 	return temp + changeOfTime(rest_num);
 }
-
+void GroundV::getName() {
+	std::cout << name;
+}
 

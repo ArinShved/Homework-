@@ -1,10 +1,10 @@
 #include "all_terrain_boots.h"
 
 AllTerBoots::AllTerBoots() : GroundV() {
-	name = "Ботинки-вездеходы";
-	speed = 6;
-	rest = 10;
-	time_b_rest = 60;
+	this->name = "Ботинки-вездеходы";
+	this->speed = 6;
+	this->rest = 10;
+	this->time_b_rest = 60;
 }
 
 double AllTerBoots::changeOfTime(int i) {

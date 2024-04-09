@@ -3,14 +3,22 @@
 #include <iostream>
 #include <string>
 
-#include "vehicle.h"
+#ifdef TYPE_OF_VEHICLE_EXPORTS
+#define TYPE_OF_VEHICLE_API __declspec(dllexport)
+#else
+#define TYPE_OF_VEHICLE_API __declspec(dllimport)
+#endif;
 
 
-class AirV : public Vehicle {
+
+class AirV {
 protected:
 	double reduction;
+	std::string name;
+	int speed;
 public:
-	AirV();
-	virtual double changeOfDist(int distance);
-	double race(int dist) override;
+	TYPE_OF_VEHICLE_API AirV();
+	TYPE_OF_VEHICLE_API virtual double changeOfDist(int distance);
+	TYPE_OF_VEHICLE_API void getName();
+	TYPE_OF_VEHICLE_API virtual double race(int dist);
 };

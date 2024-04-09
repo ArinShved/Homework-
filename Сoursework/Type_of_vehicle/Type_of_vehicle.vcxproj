@@ -140,7 +140,6 @@
     <ClCompile Include="centaur.cpp" />
     <ClCompile Include="eagle.cpp" />
     <ClCompile Include="ground_vehicle.cpp" />
-    <ClCompile Include="vehicle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="air_vehicle.h" />
@@ -152,7 +151,6 @@
     <ClInclude Include="centaur.h" />
     <ClInclude Include="eagle.h" />
     <ClInclude Include="ground_vehicle.h" />
-    <ClInclude Include="vehicle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

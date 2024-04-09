@@ -1,9 +1,9 @@
 #include "broom.h"
 
 Broom::Broom() :AirV() {
-	name = "Метла ";
-	speed = 20;
-	reduction = 0;
+	this->name = "Метла ";
+	this->speed = 20;
+	this->reduction = 0;
 }
 
 double Broom::changeOfDist(int dist) {

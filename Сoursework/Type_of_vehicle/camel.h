@@ -4,7 +4,7 @@
 
 class Camel : public GroundV {
 public:
-	Camel();
-	double changeOfTime(int i) override;
+	TYPE_OF_VEHICLE_API Camel();
+	TYPE_OF_VEHICLE_API double changeOfTime(int i) override;
 
 };

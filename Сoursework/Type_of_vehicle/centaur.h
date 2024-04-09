@@ -3,6 +3,6 @@
 
 class Centaur : public GroundV {
 public:
-	Centaur();
-	double race(int dist) override;
+	TYPE_OF_VEHICLE_API Centaur();
+	TYPE_OF_VEHICLE_API double race(int dist) override;
 };

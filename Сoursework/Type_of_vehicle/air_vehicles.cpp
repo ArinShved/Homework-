@@ -1,9 +1,9 @@
 #include "air_vehicle.h"
 
 AirV::AirV() {
-	name = "Воздушный транспорт";
-	speed = 0;
-	reduction = 0;
+	this->name = "Воздушный транспорт";
+	this->speed = 0;
+	this->reduction = 0;
 }
 
 double AirV::changeOfDist(int distance) {
@@ -13,4 +13,7 @@ double AirV::changeOfDist(int distance) {
 double AirV::race(int dist) {
 	double temp = changeOfDist(dist);
 	return temp / speed;
+}
+void AirV::getName() {
+	std::cout << name;
 }

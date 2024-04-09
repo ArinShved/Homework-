@@ -1,10 +1,10 @@
 #include "camel_speedboad.h"
 
 CamelSpB::CamelSpB() : Camel() {
-	name = "Верблюд-быстроход";
-	speed = 40;
-	rest = 5;
-	time_b_rest = 10;
+	this->name = "Верблюд-быстроход";
+	this->speed = 40;
+	this->rest = 5;
+	this->time_b_rest = 10;
 }
 
 double CamelSpB::changeOfTime(int i) {

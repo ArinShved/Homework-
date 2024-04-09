@@ -12,7 +12,5 @@
 #include "all_terrain_boots.h"
 
 
-void registration_mode1(std::vector<Vehicle>& member);
-void registration_mode2(std::vector<Vehicle>& member);
-void registration_mode3(std::vector<Vehicle>& member);
+void registration(std::vector<int>& race_member, std::vector<std::string>& members_name, std::vector<int> member, std::vector<std::string> name);
 

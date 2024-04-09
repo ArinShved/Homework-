@@ -4,6 +4,6 @@
 
 class Broom : public AirV {
 public:
-	Broom();
-	double changeOfDist(int dist) override;
+	TYPE_OF_VEHICLE_API Broom();
+	TYPE_OF_VEHICLE_API double changeOfDist(int dist) override;
 };

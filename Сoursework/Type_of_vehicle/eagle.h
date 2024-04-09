@@ -4,6 +4,6 @@
 
 class Eagle : public AirV {
 public:
-	Eagle();
-	double changeOfDist(int dict) override;
+	TYPE_OF_VEHICLE_API Eagle();
+	TYPE_OF_VEHICLE_API double changeOfDist(int dict) override;
 };

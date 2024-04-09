@@ -4,6 +4,6 @@
 
 class CarpetPlane : public AirV {
 public:
-	CarpetPlane();
-	double changeOfDist(int distance) override;
+	TYPE_OF_VEHICLE_API CarpetPlane();
+	TYPE_OF_VEHICLE_API double changeOfDist(int distance) override;
 };
