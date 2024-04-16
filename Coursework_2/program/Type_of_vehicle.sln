@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Type_of_vehicle", "Type_of_vehicle.vcxproj", "{33D7A8DA-73AB-48A5-8BE1-2666F6F1BB4C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Type_of_vehicle", "Type_of_vehicle\Type_of_vehicle.vcxproj", "{33D7A8DA-73AB-48A5-8BE1-2666F6F1BB4C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Race_programm", "..\Race_programm\Race_programm.vcxproj", "{806C571B-18C2-438C-99F7-DCF35267A3BF}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Race_programm", "Race_programm\Race_programm.vcxproj", "{806C571B-18C2-438C-99F7-DCF35267A3BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

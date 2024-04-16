@@ -9,6 +9,9 @@ Centaur::Centaur() : GroundV() {
 
 double Centaur::race(int dist) {
 	double temp = static_cast<double>(dist) / speed;
-	int rest_num = dist / time_b_rest;
+	int rest_num = dist / (time_b_rest*speed);
+	if (dist % (time_b_rest * speed) == 0) {
+		rest_num--;
+	}
 	return temp + (rest * rest_num);
 }

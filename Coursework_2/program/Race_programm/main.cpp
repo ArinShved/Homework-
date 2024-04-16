@@ -14,7 +14,7 @@ int main() {
 	std::vector<int> member = { 1, 2, 3, 4, 5, 6, 7};
 	std::vector<int> gr_member = { 1, 3, 4, 6};
 	std::vector<int> air_member= { 2, 5, 7};
-	std::vector<std::string> names = { " " , "1. Ботинки-вездеходы", "2. Метла", "3. Верблюд","4. Кентавр", "5. Орел", "6. Верблюд-быстроход", "7. Ковер-самолет" };
+	std::vector<std::string> names = { " " , " Ботинки-вездеходы", " Метла", " Верблюд"," Кентавр", " Орел", " Верблюд-быстроход", " Ковер-самолет" };
 	std::vector<std::string> race_type = { "наземная", "воздушная", "наземная и воздушная" };
 	int mode;
 	do {
@@ -54,44 +54,61 @@ int main() {
 		std::cin >> distance;
 		distance = abs(distance);
 
-		std::cout << "Должно быть зарегестрировано хотя бы 2 транспортных средства:\n ";
+		std::cout << "\nДолжно быть зарегестрировано хотя бы 2 транспортных средства:\n ";
 		int num_of_member = 0;
 
 		do {
 			if (num_of_member < 2) {
 				std::cout << "1.  Зарегистрировать транспорт \n" << "Выберите дейтсвие: ";
+				std::cin >> user_answer;
+				if (user_answer == 2)
+				{
+					std::cout << "\nДолжны быть зарегестрированы хотя бы 2 участника!\n ";
+					user_answer = NULL;
+					continue;
+					
+				}
 			}
 			else
 			{
 				std::cout << "1. Зарегистрировать транспорт \n" << "2. Начать гонку\n " << "Выберите дейтсвие: ";
+				std::cin >> user_answer;
 			}
-			std::cin >> user_answer;
+			
 			if (user_answer != 1 && user_answer != 2) {
 				std::cout << "Неправильное число! \n";
 			}
 			if (user_answer == 1) {
-				int j = mode - 1;
-				std::cout << "\nГонка " << race_type[j] << "\n";
-				std::cout << "Расстояние: " << distance << "\n";
-				if (num_of_member < 1) {
-					std::cout << " ";
-				}
-				else {
-					std::cout << "Зарегистрированные транспортные средства: ";
-					for (int i = 0; i < member_name.size(); i++) {
-						std::cout << member_name[i] << ", ";
+				bool start = 1;
+				do {
+					int j = mode - 1;
+					std::cout << "\nГонка " << race_type[j] << "\n";
+					std::cout << "Расстояние: " << distance << "\n";
+					if (num_of_member < 1) {
+						std::cout << " ";
 					}
-				}
-				if (mode == 1) {
-					registration(race_member, member_name, gr_member, names);
-				}
-				else if (mode == 2) {
-					registration(race_member, member_name, air_member, names);
-				}
-				else {
-					registration(race_member, member_name, member, names);
-				}
-				num_of_member = race_member.size();
+					else {
+						std::cout << "Зарегистрированные транспортные средства: ";
+						for (int i = 0; i < member_name.size(); i++) {
+							if (i == member_name.size() - 1) {
+								std::cout << member_name[i] << " ";
+							}
+							else {
+								std::cout << member_name[i] << ", ";
+							}
+						}
+					}
+					if (mode == 1) {
+						registration(race_member, member_name, gr_member, names, start);
+					}
+					else if (mode == 2) {
+						registration(race_member, member_name, air_member, names, start);
+					}
+					else {
+						registration(race_member, member_name, member, names, start);
+					}
+					num_of_member = race_member.size();
+				} while (start);
 			}
 		} while (user_answer != 2);
 		
@@ -129,8 +146,8 @@ int main() {
 		}
 
 
-		for (int i = 0; i < race_member.size(); i++) {
-			for (int j = 0; j < race_member.size()-1; j++) {
+		for (auto i = 0; i < race_member.size(); i++) {
+			for (auto j = 0; j < race_member.size()-1; j++) {
 				if (results[j] > results[j + 1]) {
 					double temp = results[j];
 					results[j] = results[j + 1];
@@ -145,7 +162,7 @@ int main() {
 
 		std::cout << "\nРезультаты гонки:\n";
 		for (int i = 0; i < race_member.size(); i++) {
-			std::cout << member_name[i] << " Время: " << results[i] << "\n";
+			std::cout << member_name[i] << "  Время: " << results[i] << "\n";
 			
 		}
 
@@ -156,3 +173,4 @@ int main() {
 	system("pause");
 	return 0;
 }
+

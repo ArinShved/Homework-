@@ -8,7 +8,7 @@ Broom::Broom() :AirV() {
 
 double Broom::changeOfDist(int dist) {
 	int temp = dist;
-	while (temp > 0) {
+	while (temp >= 1000) {
 		temp -= 1000;
 		reduction += 0.01;
 	}

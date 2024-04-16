@@ -16,10 +16,14 @@ double GroundV::changeOfTime(int i) {
 
 double GroundV::race(int dist) {
 	double temp = static_cast<double>(dist) / speed;
-	int rest_num = dist / time_b_rest;
+	int rest_num = dist / (time_b_rest*speed);
+	if (dist % (time_b_rest * speed) == 0) {
+		rest_num--;
+	}
 	return temp + changeOfTime(rest_num);
 }
 void GroundV::getName() {
 	std::cout << name;
 }
+
 

@@ -1,7 +1,7 @@
 #include "function.h"
 
 
-void registration(std::vector<int>& race_member, std::vector<std::string>& members_name, std::vector<int> member, std::vector<std::string> name) {
+void registration(std::vector<int>& race_member, std::vector<std::string>& members_name, std::vector<int> member, std::vector<std::string> name, bool& start) {
 	bool stop = 0;
 	int n;
 
@@ -28,7 +28,7 @@ void registration(std::vector<int>& race_member, std::vector<std::string>& membe
 
 	for (int i = 0; i < race_member.size(); i++) {
 		if (n == race_member[i]) {
-			std::cout << "Данный участник уже зарегистрирован!\n\n ";
+			std::cout << "\n\nДанный участник уже зарегистрирован!\n\n ";
 			stop = 0;
 			break;
 		}
@@ -36,6 +36,8 @@ void registration(std::vector<int>& race_member, std::vector<std::string>& membe
 	
 	if (n == 0) {
 		std::cout << "\n";
+		start = 0;
+	
 	}
 	else if (stop == 1) {
 		race_member.push_back(n);
@@ -43,7 +45,7 @@ void registration(std::vector<int>& race_member, std::vector<std::string>& membe
 		std::cout << name[n] << " зарегистрирован!\n\n";
 	}
 	else {
-		std::cout << "Нельзя зарегистрировать!\n\n";
+		std::cout << "\n\nНельзя зарегистрировать!\n\n";
 	}
 
 }
