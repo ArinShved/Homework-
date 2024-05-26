@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{46e47aa9-46c8-4dcf-95a1-6bca12c2fa06}</ProjectGuid>
-    <RootNamespace>Mergesort</RootNamespace>
+    <ProjectGuid>{016397f6-512e-4954-9fd8-bbcefbe53809}</ProjectGuid>
+    <RootNamespace>Outputtingapyramidonanarray</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Merge sort.cpp" />
+    <ClCompile Include="Outputting a pyramid on an array.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
