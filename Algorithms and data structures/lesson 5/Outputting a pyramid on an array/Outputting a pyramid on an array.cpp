@@ -6,23 +6,23 @@
 void print_pyramid(std::vector<int> arr) {
     int arr_size = arr.size();
     std::cout << "\n" << 0 << " root " << arr[0] << "\n";
-
+    int j = 1;
+  
     for (int i = 0; i < arr_size; i++)
     {
-        
         if (2 * i +1 < arr.size()) {
-            int j = abs(i / 2 - 1);
             std::cout << j << " left(" << arr[i] << ") " << arr[2 * i + 1] << "\n";
         }
         if (2 * i + 2 < arr.size()) {
-            int j = abs(i / 2 - 2);
             std::cout << j << " right(" << arr[i] << ") " << arr[2 * i + 2] << "\n";
         }
-
-        arr_size -= i * 2;
-
+      
+        if (i % 2 == 0) {
+            j++;
+        }
     }
 }
+
 
 
 
