@@ -40,13 +40,14 @@ public:
 		return length;
 	}
 
-	smart_array& operator=(smart_array& arr) {
-		delete[] array;
-		size = arr.size;
-		length = arr.length;
-		array = new int[size];
-		std::copy(arr.array, arr.array + length, array);
-
+	smart_array& operator=(const smart_array& arr) {
+		if (this != &arr) {
+			delete[] array;
+			size = arr.size;
+			length = arr.length;
+			array = new int[size];
+			std::copy(arr.array, arr.array + length, array);
+		}
 		return *this;
 	}
 	~smart_array() {
