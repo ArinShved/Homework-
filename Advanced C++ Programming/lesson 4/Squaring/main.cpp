@@ -8,7 +8,7 @@ T squaring(T a) {
 
 template <class T>
 std::vector<T> squaring(std::vector<T> arr) {
-	std::vector<int> temp(arr.size());
+	std::vector<T> temp(arr.size());
 	for (int i = 0; i < arr.size(); i++) {
 		temp[i] = arr[i] * arr[i];
 	}
