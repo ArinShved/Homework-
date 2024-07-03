@@ -12,14 +12,14 @@ void sort_arr(std::vector<int>& arr) {
 int main() {
 	std::vector<int> arr = { 1, 1, 2, 5, 6, 1, 2, 4 };
 	std::cout << "[IN]:";
-	for (auto& i : arr) {
+	for (const auto& i : arr) {
 		std::cout << i << " ";
 	}
 
 	sort_arr(arr);
 
 	std::cout << "\n[OUT]: ";
-	for (auto& i : arr) {
+	for (const auto& i : arr) {
 		std::cout << i << " ";
 	}
 

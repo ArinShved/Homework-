@@ -6,7 +6,7 @@
 
 template<class T>
 void print_container(T arr) {
-	for (auto i : arr) {
+	for (const auto i : arr) {
 		std::cout << i << " ";
 	}
 	std::cout << "\n\n";
