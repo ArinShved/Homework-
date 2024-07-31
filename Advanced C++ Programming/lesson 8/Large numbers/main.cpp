@@ -94,7 +94,7 @@ public:
 int main() {
 
 	auto number1 = big_integer("999999999999999999999999999999999999999");
-	auto number2 = big_integer("78524");
+	auto number2 = big_integer("785248765");
 	
 	auto result = number1 + number2;
 	std::cout << result << "\n";
