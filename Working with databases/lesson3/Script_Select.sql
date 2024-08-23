@@ -25,14 +25,14 @@ JOIN genre g ON gf.genre_id =g.id
 GROUP BY g.name;
 
 SELECT COUNT(t.name) FROM track t
-WHERE albom_id IN (
+WHERE album_id IN (
 SELECT id FROM album a 
 WHERE releasedata BETWEEN '2019-01-01' AND '2020-01-01'
 );
 
 SELECT a.name, AVG(t.duration) AS av_tr_d
 FROM track t 
-JOIN album a ON a.id = t.albom_id 
+JOIN album a ON a.id = t.album_id 
 GROUP BY a.name;
 
 SELECT p.name
@@ -45,7 +45,7 @@ SELECT c.name
 FROM collection c 
 JOIN collectiontrack c2 ON c.id = c2.collection_id 
 JOIN track t ON t.id = c2.track_id 
-JOIN album a ON a.id = t.albom_id 
+JOIN album a ON a.id = t.album_id 
 JOIN performeralbum p2 ON p2.album_id =a.id 
 JOIN performer p ON p.id = p2.performer_id 
 WHERE p.id = 102;

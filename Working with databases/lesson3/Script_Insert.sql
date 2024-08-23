@@ -31,17 +31,17 @@ INSERT INTO album
 VALUES (504, 'Pен', '2003-04-09');
 
 
-INSERT INTO track(id, name, duration, albom_id) 
+INSERT INTO track(id, name, duration, album_id) 
 VALUES (1001, 'Дождь в ночи', '00:04:09', 502);
-INSERT INTO track(id, name, duration, albom_id)  
+INSERT INTO track(id, name, duration, album_id)  
 VALUES (1002,'Мой сигнал', '00:03:09', 502);
-INSERT INTO track(id, name, duration, albom_id)  
+INSERT INTO track(id, name, duration, album_id)  
 VALUES(1003, 'Зеркало', '00:02:56', 501);         
-INSERT INTO track(id, name, duration, albom_id)  
+INSERT INTO track(id, name, duration, album_id)  
 VALUES (1004,'Pен_6', '00:05:00', 503);
-INSERT INTO track(id, name, duration, albom_id)  
+INSERT INTO track(id, name, duration, album_id)  
 VALUES(1005,'З.К.', '00:03:54', 504);
-INSERT INTO track(id, name, duration, albom_id)  
+INSERT INTO track(id, name, duration, album_id)  
 VALUES(1006,'Небеса', '00:07:03', 501);
 
 
