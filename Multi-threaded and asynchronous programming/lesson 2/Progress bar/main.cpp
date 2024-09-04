@@ -16,7 +16,7 @@ void go_to_xy(int x, int y)
 	SetConsoleCursorPosition(hConsole, position);
 }
 
-void simulateCalculation(int threadNumber, int Y) {
+void simulate(int thread_num, int Y) {
 	
 	int progress = 20;
 	int duration = 1500;
@@ -25,7 +25,7 @@ void simulateCalculation(int threadNumber, int Y) {
 	{
 		std::lock_guard<std::mutex> lock(mtx);
 		go_to_xy(0, Y);
-		std::cout << threadNumber << "  " << std::this_thread::get_id();
+		std::cout << thread_num << "  " << std::this_thread::get_id();
 		go_to_xy(9, Y);
 		std::cout << "[";
 	}
@@ -59,7 +59,7 @@ int main() {
 	std::vector<std::thread> thread_arr(thread_num);
 
 	for (int i = 0; i < thread_num; i++) {
-		thread_arr[i] = std::thread(simulateCalculation, i + 1, i);
+		thread_arr[i] = std::thread(simulate, i + 1, i);
 	}
 
 	for (auto& th : thread_arr) {

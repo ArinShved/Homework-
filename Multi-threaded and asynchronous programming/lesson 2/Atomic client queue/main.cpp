@@ -75,7 +75,7 @@ int main() {
 	th2.join();
 	auto end = std::chrono::steady_clock::now();
 	std::chrono::duration<double> time = end - start;
-	std::cout << "Конец работы, используя atomic. Время работы: " << time.count() << "\n";
+	std::cout << "Конец работы, использовали atomic. Время работы: " << time.count() << "\n";
 
 	auto start_mtx = std::chrono::steady_clock::now();
 	std::thread th3([&]()
@@ -89,7 +89,7 @@ int main() {
 	th4.join();
 	auto end_mtx = std::chrono::steady_clock::now();
 	std::chrono::duration<double> time_mtx = end_mtx - start_mtx;
-	std::cout << "Конец работы, используя mutex. Время работы: \n" << time_mtx.count();
+	std::cout << "Конец работы, испотзовали mutex. Время работы: \n" << time_mtx.count();
 
 
 	return 0;
