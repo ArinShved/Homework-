@@ -167,19 +167,19 @@ int main() {
         Client user_1{ "Andru", "Lock", "uuu.com" };
         base.create_tables(c);
         base.add_client(us, c);
-        //base.add_client(user_1, c);
+        base.add_client(user_1, c);
         base.add_phone("orer.com", "8(966)987-09-09", c);
         base.add_phone("orer.com", "8(767)987-09-98", c);
 
         Client user_2{ "Luke", "Ghost", "otqq.com" };
-        //base.update_client(user_2, 1, c);
+        base.update_client(user_2, 1, c);
         base.remove_phone("orer.com", "8(767)987-09-98", c);
         
         base.find_by_Email("otqq.com", c);
         base.find_by_name("Andru", c);
         base.find_by_surname("Ghost", c);
 
-      //  base.remove_client("orer.com", c);
+        base.remove_client("orer.com", c);
     }
     catch (pqxx::sql_error e) {
         std::cout << e.what() << "\n";
