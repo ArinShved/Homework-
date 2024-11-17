@@ -69,13 +69,13 @@ public:
 };
 
 int main() {
-    auto text_block_1 = new Paragraph(new Text());
+    auto text_block_1 = std::make_shared<Paragraph>(new Text());
     text_block_1->render("Hello world");
     std::cout << std::endl;
-    auto text_block_2 = new Reversed(new Text());
+    auto text_block_2 = std::make_shared<Reversed>(new Text());
     text_block_2->render("Hello world");
     std::cout << std::endl;
-    auto text_block_3 = new Link(new Text());
+    auto text_block_3 = std::make_shared<Link>(new Text());
     text_block_3->render("netology.ru", "Hello world");
     std::cout << std::endl;
 
