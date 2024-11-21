@@ -46,8 +46,7 @@ private:
 protected:
     virtual void processing(const LogMessage& _message) = 0;
     virtual Type canHadle() const = 0;
-    
-
+ 
 };
 
 class FatalError : public LogHandler {
@@ -59,8 +58,6 @@ public:
         return Type::fatal_error;
     }
 
-private:
-    LogHandler* next = nullptr;
 };
 
 class Error : public LogHandler {
@@ -80,7 +77,6 @@ public:
     }
 
 private:
-    LogHandler* next = nullptr;
     const std::string path = "text.txt";
 };
 
@@ -93,8 +89,7 @@ public:
     Type canHadle() const override {
         return Type::warning;
     }
-private:
-    LogHandler* next = nullptr;
+
 };
 
 class UnknownError : public LogHandler {
@@ -106,9 +101,7 @@ public:
     Type canHadle() const override {
         return Type::unknown_error;
     }
-   
-private:
-    LogHandler* next = nullptr;
+  
 };
 
 int main()
