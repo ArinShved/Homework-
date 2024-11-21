@@ -9,128 +9,138 @@ enum class Type {
 };
 
 class LogMessage {
-protected:
-    Type mes_type;
-    std::string mes = "";
 public:
+    LogMessage(Type _type, const std::string& str) : mes_type(_type), mes(str) {};
     Type type() const {
         return mes_type;
+
     };
-    const std::string& message() {
+    const std::string& message() const {
         return mes;
     };
-    
-    virtual void processing(Type _type, const std::string& _message) = 0;
-    virtual void next_handler(LogMessage* next) = 0;
+private:
+    Type mes_type;
+    std::string mes;
 };
 
-class FatalError : public LogMessage {
-private:
-    LogMessage* next = nullptr;
+class LogHandler {
 public:
-    void processing(Type _type, const std::string& _message) override {
-        mes_type = _type;
-        mes = _message;
-        if (type() == Type::fatal_error) {
-            throw mes;
+     void receiveMessage(const LogMessage& _message) {
+        if (canHadle() == _message.type()) {
+            processing(_message);
         }
         else if (next != nullptr) {
-            next->processing(_type, _message);
+            next->receiveMessage(_message);
         }
         else {
-            throw std::string("Запрещенная команда. Проверьте цепочку обработки");
+            throw( std::runtime_error("Запрещенная команда. Проверьте цепочку обработки"));
         }
     }
-    void next_handler(LogMessage* _next) override{
-        next = _next;
-    }
+     void next_handler(LogHandler* _next) {
+         next = _next;
+     }
+    
+private:
+    LogHandler* next = nullptr;
+
+protected:
+    virtual void processing(const LogMessage& _message) = 0;
+    virtual Type canHadle() const = 0;
+    
+
 };
 
-class Error : public LogMessage {
-private:
-    LogMessage* next = nullptr;
-    const std::string path = "text.txt";
+class FatalError : public LogHandler {
 public:
-    void processing(Type _type, const std::string& _message) override {
-        mes_type = _type;
-        mes = _message;
-        if (type() == Type::error) {
+    void processing(const LogMessage& _message) override {
+        throw(std::runtime_error(_message.message()));
+    }
+    Type canHadle() const {
+        return Type::fatal_error;
+    }
+
+private:
+    LogHandler* next = nullptr;
+};
+
+class Error : public LogHandler {
+
+public:
+    void processing(const LogMessage& _message) override {
             std::ofstream out;
             out.open(path);
             if (out.is_open()) {
-                out << mes << std::endl;
+                out << _message.message() << std::endl;
             }
             out.close();
-        }
-        else if (next != nullptr) {
-            next->processing(_type, _message);
-        }
-         else {
-             throw std::string("Запрещенная команда. Проверьте цепочку обработки");
-        }
     }
-    void next_handler(LogMessage* _next) override {
-        next = _next;
+
+    Type canHadle() const override{
+        return Type::error;
     }
+
+private:
+    LogHandler* next = nullptr;
+    const std::string path = "text.txt";
 };
 
 
-class Warning : public LogMessage {
-private:
-    LogMessage* next = nullptr;
+class Warning : public LogHandler {
 public:
-    void processing(Type _type, const std::string& _message) override {
-        mes_type = _type;
-        mes = _message;
-        if (type() == Type::warning) {
-            std::cout << mes << std::endl;
-        }
-        else if (next != nullptr) {
-            next->processing(_type, _message);
-        }
-        else {
-            throw std::string("Запрещенная команда. Проверьте цепочку обработки");
-        }
+    void processing(const LogMessage& _message) override {
+        std::cout << _message.message() << std::endl;
     }
-    void next_handler(LogMessage* _next) override {
-        next = _next;
+    Type canHadle() const override {
+        return Type::warning;
     }
+private:
+    LogHandler* next = nullptr;
 };
 
-class UnknownError : public LogMessage {
-private:
-    LogMessage* next = nullptr;
+class UnknownError : public LogHandler {
+
 public:
-    void processing(Type _type, const std::string& _message) override {
-        mes_type = _type;
-        mes = _message;
-        throw std::string("Необработанное исключение");
+    void processing(const LogMessage& _message) override {
+        throw(std::runtime_error("Необработанное исключение"));
     }
-    void next_handler(LogMessage* _next) override {
-        next = nullptr;
+    Type canHadle() const override {
+        return Type::unknown_error;
     }
+   
+private:
+    LogHandler* next = nullptr;
 };
 
 int main()
 {
     setlocale(LC_ALL, "rus");
     try {
-        LogMessage* first = new FatalError;
-        LogMessage* second = new Error;
-        LogMessage* third = new Warning;
-        LogMessage* fourth = new UnknownError;
+        LogHandler* first = new FatalError;
+        LogHandler* second = new Error;
+        LogHandler* third = new Warning;
+        LogHandler* fourth = new UnknownError;
+
         first->next_handler(second);
         second->next_handler(third);
         third->next_handler(fourth);
    
+        LogMessage message_1(Type::error, "Невозможно открыть");
+        LogMessage message_2(Type::warning, "Проверьте файл");
+        LogMessage message_3(Type::fatal_error, "Отсутствие данных");
+        LogMessage message_4(Type::unknown_error, "Неизвестная ошибка");
 
-        first->processing(Type::error, "Невозможно открыть");
-        first->processing(Type::warning, "Проверьте файл");
-        first->processing(Type::fatal_error, "Отсутствие данных");
-        first->processing(Type::unknown_error, "Неизвестная ошибка");
+        first->receiveMessage(message_1);
+        first->receiveMessage(message_2); 
+        first->receiveMessage(message_4);
+        first->receiveMessage(message_3);
+
+        delete first;
+        delete second;
+        delete third;
+        delete fourth;
     }
-    catch (const std::string& e) {
-        std::cout << e << std::endl;
+    catch (const std::runtime_error& e) {
+        std::cerr << e.what() << std::endl;
     }
 
 	return 0;

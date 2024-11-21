@@ -56,63 +56,50 @@ class ObsInFile : public Observer {
 public:
 	ObsInFile(const std::string _path) : path(_path) {};
 	void onWarning(const std::string& message) override {
-		std::ofstream out;
-		out.open(path, std::ios::app);
-		if (out.is_open()) {
-			out << "Второй наблюдатель update: warning " << message << std::endl;
-		}
-		out.close();
+		printInFile("warning " + message + "\n");
 	}
 	void onError(const std::string& message) override {
-		std::ofstream out;
-		out.open(path, std::ios::app);
-		if (out.is_open()) {
-			out << "Второй наблюдатель update: error " << message << std::endl;
-		}
-		out.close();
-
+		printInFile("error " + message + "\n");
 	}
 	void onFatalError(const std::string& message) override {
-		std::ofstream out;
-		out.open(path, std::ios::app);
-		if (out.is_open()) {
-			out << "Второй наблюдатель update: fatal error " << message << std::endl;
-		}
-		out.close();
+		printInFile("fatal error " + message + "\n");
 	}
 protected:
 	const std::string path;
+
+	virtual void printInFile(const std::string& mes) {
+		std::ofstream out;
+		out.open(path, std::ios::app);
+		if (out.is_open()) {
+			out << "Второй наблюдатель update:" << mes;
+		}
+		out.close();
+	}
 };
 
 class ObsInConAndFile : public ObsInFile {
 public:
 	ObsInConAndFile(const std::string _path) : ObsInFile(_path) {};
 	void onWarning(const std::string& message) override {
-		std::ofstream out;
-		out.open(path, std::ios::app);
-		if (out.is_open()) {
-			out << "Третий наблюдатель update: warning " << message << std::endl;
-		}
-		out.close();
+		printInFile("warning " + message + "\n");
 		std::cout << "Третий наблюдатель update: warning " << message << std::endl;
 	}
 	void onError(const std::string& message) override {
-		std::ofstream out;
-		out.open(path, std::ios::app);
-		if (out.is_open()) {
-			out << "Третий наблюдатель update: error " << message << std::endl;
-		}
-		out.close();
+		printInFile("error " + message + "\n");
 		std::cout << "Третий наблюдатель update: error " << message << std::endl;
 	}
 	void onFatalError(const std::string& message) override {
+		printInFile("fatal error " + message + "\n");
+		std::cout << "Третий наблюдатель update: fatal error " << message << std::endl;
+	}
+private:
+	void printInFile(const std::string& mes) override {
 		std::ofstream out;
 		out.open(path, std::ios::app);
 		if (out.is_open()) {
-			out << "Третий наблюдатель update: fatal error " << message << std::endl;
+			out << "Третий наблюдатель update:" << mes;
 		}
 		out.close();
-		std::cout << "Третий наблюдатель update: fatal error " << message << std::endl;
 	}
 };
 
@@ -133,7 +120,6 @@ int main() {
 		warn.error("Cannot open");
 		warn.fatalError("System error");
 
-	
 	}
 	catch (const std::exception& e) {
 		std::cerr << e.what() << std::endl;
