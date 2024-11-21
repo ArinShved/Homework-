@@ -46,7 +46,6 @@ private:
 protected:
     virtual void processing(const LogMessage& _message) = 0;
     virtual Type canHadle() const = 0;
- 
 };
 
 class FatalError : public LogHandler {
@@ -57,7 +56,6 @@ public:
     Type canHadle() const {
         return Type::fatal_error;
     }
-
 };
 
 class Error : public LogHandler {
@@ -89,7 +87,6 @@ public:
     Type canHadle() const override {
         return Type::warning;
     }
-
 };
 
 class UnknownError : public LogHandler {
@@ -101,7 +98,6 @@ public:
     Type canHadle() const override {
         return Type::unknown_error;
     }
-  
 };
 
 int main()

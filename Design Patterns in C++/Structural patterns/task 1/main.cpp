@@ -8,16 +8,15 @@ public:
     }
 };
 
-
 class DecoratedText : public Text {
 public:
-    explicit DecoratedText(Text* text) : text_(text) {}
-    Text* text_;
+    explicit DecoratedText(std::shared_ptr<Text> text) : text_(text) {}
+    std::shared_ptr<Text> text_;
 };
 
 class ItalicText : public DecoratedText {
 public:
-    explicit ItalicText(Text* text) : DecoratedText(text) {}
+    explicit ItalicText(std::shared_ptr<Text> text) : DecoratedText(text) {}
     void render(const std::string& data)  const {
         std::cout << "<i>";
         text_->render(data);
@@ -27,7 +26,7 @@ public:
 
 class BoldText : public DecoratedText {
 public:
-    explicit BoldText(Text* text) : DecoratedText(text) {}
+    explicit BoldText(std::shared_ptr<Text> text) : DecoratedText(text) {}
     void render(const std::string& data) const {
         std::cout << "<b>";
         text_->render(data);
@@ -37,7 +36,7 @@ public:
 
 class Paragraph : public DecoratedText {
 public:
-    explicit Paragraph(Text* text) : DecoratedText(text) {};
+    explicit Paragraph(std::shared_ptr<Text> text) : DecoratedText(text) {};
     void render(const std::string& data) const {
         std::cout << "<p>";
         text_->render(data);
@@ -47,7 +46,7 @@ public:
 
 class Reversed : public DecoratedText {
 public:
-    explicit Reversed(Text* text) : DecoratedText(text) {};
+    explicit Reversed(std::shared_ptr<Text> text) : DecoratedText(text) {};
     void render(const std::string& data) const {
         std::string _data = data;
         std::reverse(_data.begin(), _data.end());
@@ -57,7 +56,7 @@ public:
 
 class Link : public DecoratedText {
 public: 
-    explicit Link(Text* text) : DecoratedText(text) {};
+    explicit Link(std::shared_ptr<Text> text) : DecoratedText(text) {};
     void render(const std::string& link, const std::string& data) const {
         std::cout << "<a href=";
         text_->render(link);
@@ -65,19 +64,18 @@ public:
         text_->render(data);
         std::cout << "</a>";
     }
-
 };
 
 int main() {
-    auto text_block_1 = std::make_shared<Paragraph>(new Text());
+    auto text_block_1 = std::make_shared<Paragraph>(std::make_shared<Text>());
     text_block_1->render("Hello world");
     std::cout << std::endl;
-    auto text_block_2 = std::make_shared<Reversed>(new Text());
+    auto text_block_2 = std::make_shared<Reversed>(std::make_shared<Text>());
     text_block_2->render("Hello world");
     std::cout << std::endl;
-    auto text_block_3 = std::make_shared<Link>(new Text());
+    auto text_block_3 = std::make_shared<Link>(std::make_shared<Text>());
     text_block_3->render("netology.ru", "Hello world");
     std::cout << std::endl;
 
-
+    return 0;
 }
