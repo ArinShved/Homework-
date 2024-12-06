@@ -49,8 +49,7 @@ void Transform::scale_down_z(Shape& figure, int _z) {
 };
 
 
-void Transform::scale_up(Shape& figure, int n)
-{
+void Transform::scale_up(Shape& figure, int n){
 	for (int i = 0; i < figure.get_points().size(); i++) {
 		figure.change_x(figure.get_points()[i].x * n, i);
 		figure.change_y(figure.get_points()[i].y * n, i);
@@ -58,8 +57,7 @@ void Transform::scale_up(Shape& figure, int n)
 	}
 };
 
-void Transform::scale_down(Shape& figure, int n)
-{
+void Transform::scale_down(Shape& figure, int n){
 	for (int i = 0; i < figure.get_points().size(); i++) {
 		figure.change_x(figure.get_points()[i].x / n, i);
 		figure.change_y(figure.get_points()[i].y / n, i);
