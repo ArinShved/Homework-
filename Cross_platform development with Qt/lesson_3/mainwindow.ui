@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>361</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QFormLayout" name="formLayout">
+    <item row="0" column="0">
+     <widget class="QLabel" name="l_hostname">
+      <property name="text">
+       <string>Имя хоста</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLineEdit" name="lE_hostname"/>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="l_bdname">
+      <property name="text">
+       <string>Имя Базы Данных</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="lE_bdname"/>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="l_login">
+      <property name="text">
+       <string>Логин</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="lE_login"/>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="l_password">
+      <property name="text">
+       <string>Пароль</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLineEdit" name="lE_password"/>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="l_prot">
+      <property name="text">
+       <string>Прот порта</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QSpinBox" name="sB_prot">
+      <property name="maximum">
+       <number>10000000</number>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QPushButton" name="pB_ok">
+      <property name="text">
+       <string>OK</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="1">
+     <widget class="QPushButton" name="pB_cancel">
+      <property name="text">
+       <string>Отмена</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="1">
+     <widget class="QPushButton" name="pB_open">
+      <property name="text">
+       <string>Открыть окно</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>600</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Подключение к Бд</string>
+    </property>
+   </widget>
+   <addaction name="menu"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <tabstops>
+  <tabstop>lE_hostname</tabstop>
+  <tabstop>lE_bdname</tabstop>
+  <tabstop>lE_login</tabstop>
+  <tabstop>lE_password</tabstop>
+  <tabstop>sB_prot</tabstop>
+  <tabstop>pB_ok</tabstop>
+  <tabstop>pB_cancel</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pB_cancel</sender>
+   <signal>clicked()</signal>
+   <receiver>lE_hostname</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>408</x>
+     <y>301</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>571</x>
+     <y>55</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pB_cancel</sender>
+   <signal>clicked()</signal>
+   <receiver>lE_bdname</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>531</x>
+     <y>300</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>527</x>
+     <y>87</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pB_cancel</sender>
+   <signal>clicked()</signal>
+   <receiver>lE_login</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>480</x>
+     <y>302</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>490</x>
+     <y>130</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pB_cancel</sender>
+   <signal>clicked()</signal>
+   <receiver>lE_password</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>447</x>
+     <y>307</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>468</x>
+     <y>186</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pB_cancel</sender>
+   <signal>clicked()</signal>
+   <receiver>sB_prot</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>436</x>
+     <y>301</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>436</x>
+     <y>229</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
