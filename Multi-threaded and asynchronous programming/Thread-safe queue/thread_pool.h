@@ -2,9 +2,8 @@
 #include <vector>
 #include <thread>
 #include <functional>
-#include <future>
 #include <mutex>
-#include <iostream>
+
 
 #include "safe_queue.h"
 
