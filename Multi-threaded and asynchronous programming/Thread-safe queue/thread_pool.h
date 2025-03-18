@@ -5,6 +5,7 @@
 #include <mutex>
 
 
+
 #include "safe_queue.h"
 
 
@@ -18,9 +19,6 @@ public:
 private:
 	std::vector<std::thread> threads;
 	SafeQueue<std::function<void()>> tasks;
-	std::mutex thread_mutex;
-	std::condition_variable notification;
-	bool done = false;
-	
+	bool done;
 };
 

@@ -14,7 +14,7 @@ void func_2() {
 int main() {
 	ThreadPool pool;
 
-	for (int i = 0; i < 20; i++) {
+	for (int i = 0; i < 10; i++) {
 		pool.submit(func_1);
 		pool.submit(func_2);
 		std::this_thread::sleep_for(std::chrono::seconds(1));

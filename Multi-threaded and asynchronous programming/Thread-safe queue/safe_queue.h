@@ -4,13 +4,18 @@
 #include <thread>
 
 template<typename T>
-class SafeQueue{
+class SafeQueue {
 public:
+	SafeQueue() : done(false) {};
+
 	T queue_pop() {
 		std::unique_lock<std::mutex> lock(mtx);
 		notification.wait(lock, [this] {
-			return !task_queue.empty();
+			return !task_queue.empty() || done;
 			});
+		if (done && task_queue.empty()) {
+			throw std::runtime_error("empty and done");
+		}
 		T data = task_queue.front();
 		task_queue.pop();
 		return data;
@@ -23,11 +28,20 @@ public:
 	};
 
 	bool queue_empty() {
+		std::unique_lock<std::mutex> lock(mtx);
 		return task_queue.empty();
 	};
+
+	void set_done() {
+		std::unique_lock<std::mutex> lock(mtx);
+		done = true;
+		notification.notify_all();
+	};
+
 private:
 	std::queue<T> task_queue;
 	std::mutex mtx;
 	std::condition_variable notification;
+	bool done;
 };
 
