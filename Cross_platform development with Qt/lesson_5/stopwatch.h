@@ -14,18 +14,18 @@ public:
     void start_timer();
     void stop_timer();
     void clear_timer();
-    int get_time();
+    double get_time();
 
 signals:
-    void sig_update_time(int time);
+    void sig_update_time(double time);
 
 private slots:
     void update_time();
 
 private:
     QTimer *timer;
-    int cur_time;
-    int last_time;
+    double cur_time;
+    double last_time;
     bool running = false;
 };
 

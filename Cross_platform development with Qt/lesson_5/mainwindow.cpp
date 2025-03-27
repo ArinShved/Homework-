@@ -44,26 +44,32 @@ void MainWindow::on_pB_start_clicked()
 
 void MainWindow::on_pB_round_clicked()
 {
-    int cur_time = timer->get_time();
+    double cur_time = timer->get_time();
 
-    int s = cur_time % 60;
-    int m = (cur_time / 60) % 60;
+
+    if(lap != 1){
+      cur_time -= last_round;
+    }
+
+    int ms = static_cast<int>(cur_time * 10) % 10;
+    int s = static_cast<int>(cur_time) % 60;
+    int m = static_cast<int>(cur_time / 60) % 60;
     int h = cur_time / 3600;
 
-    QString time = QString("%1:%2:%3").arg(h).arg(m).arg(s);
-
-
+    QString time = QString("%1:%2:%3:%4").arg(h).arg(m).arg(s).arg(ms);
     ui->tB_text->append(QString("Круг %1, время: %2").arg(lap).arg(time));
+    last_round = timer->get_time();
     lap++;
 }
 
 
-void MainWindow::show_time(int cur_time){
-    int s = cur_time % 60;
-    int m = (cur_time / 60) % 60;
+void MainWindow::show_time(double cur_time){
+    int ms = static_cast<int>(cur_time * 10) % 10;
+    int s = static_cast<int>(cur_time) % 60;
+    int m = static_cast<int>(cur_time / 60) % 60;
     int h = cur_time / 3600;
 
-    QString time = QString("%1:%2:%3").arg(h).arg(m).arg(s);
+    QString time = QString("%1:%2:%3:%4").arg(h).arg(m).arg(s).arg(ms);
 
 
     ui->l_time->setText(time);
@@ -80,7 +86,8 @@ void MainWindow::on_pB_clear_clicked()
     ui->l_time->setText("00:00:00");
     ui->tB_text->clear();
     lap = 1;
-    ui->pB_start->setText("Старт");
-    ui->pB_round->setEnabled(false);
+    if(ui->pB_start->text() == "Стоп"){
+      timer->start_timer();
+    }
 }
 

@@ -18,7 +18,7 @@ public:
     ~MainWindow();
 
 public slots:
-    void show_time(int cur_time);
+    void show_time(double cur_time);
 
 
 private slots:
@@ -32,6 +32,7 @@ private:
     Ui::MainWindow *ui;
     StopWatch* timer;
     int lap = 1;
+    double last_round;
 
 };
 #endif // MAINWINDOW_H
