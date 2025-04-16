@@ -1,0 +1,1 @@
+Для скачивания нужных библиотек: https://github.com/netology-code/qt-homeworks/tree/main/08/08_PreDataBase/PG_Libs
