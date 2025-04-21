@@ -130,25 +130,24 @@ void MainWindow::ScreenDataFromDB( const QTableWidget *widget, int typeRequest)
 {
 
     ui->tb_result->clear();
-        ui->tb_result->setRowCount(0);
-        ui->tb_result->setColumnCount(0);
+    ui->tb_result->setRowCount(0);
+    ui->tb_result->setColumnCount(0);
 
+    ui->tb_result->setColumnCount(widget->columnCount());
+    ui->tb_result->setRowCount(widget->rowCount());
 
-        ui->tb_result->setColumnCount(widget->columnCount());
-        ui->tb_result->setRowCount(widget->rowCount());
+    ui->tb_result->setHorizontalHeaderLabels(QStringList() << "Название фильма" << "Описание фильма");
 
+    for(int row = 0; row < widget->rowCount(); row++) {
+        for(int col = 0; col < widget->columnCount(); col++) {
 
-        ui->tb_result->setHorizontalHeaderLabels(QStringList() << "Название фильма" << "Описание фильма");
-
-        for(int row = 0; row < widget->rowCount(); ++row) {
-            for(int col = 0; col < widget->columnCount(); ++col) {
-                QTableWidgetItem *item = widget->item(row, col)->clone();
-                ui->tb_result->setItem(row, col, item);
-            }
+            QTableWidgetItem *item = widget->item(row, col)->clone();
+            ui->tb_result->setItem(row, col, item);
         }
+    }
 
-        ui->tb_result->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-        ui->tb_result->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tb_result->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tb_result->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 /*!
  * \brief Метод изменяет стотояние формы в зависимости от статуса подключения к БД

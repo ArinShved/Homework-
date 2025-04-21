@@ -6,6 +6,9 @@
 #include <QSqlError>
 #include <QSqlDatabase>
 #include <QSqlQuery>
+#include <QSqlQueryModel>
+#include <QSqlTableModel>
+
 
 
 
@@ -50,6 +53,9 @@ public:
     void ConnectToDataBase(QVector<QString> dataForConnect);
     void ReadAnswerFromBD(int type);
 
+    QSqlTableModel* getTableModel();
+    QSqlQueryModel* getQueryModel();
+
 
 signals:
 
@@ -65,6 +71,10 @@ private:
     QSqlQuery* simpleQuery;
     QTableWidget* tableWidget;
 
+    QSqlQueryModel *queryModel;
+    QSqlTableModel *tableModel;
+
+    QString request;
 
 };
 

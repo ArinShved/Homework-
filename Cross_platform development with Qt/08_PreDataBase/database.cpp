@@ -8,6 +8,9 @@ DataBase::DataBase(QObject *parent)
     simpleQuery = new QSqlQuery();
     tableWidget = new QTableWidget();
 
+    tableModel = new QSqlTableModel();
+    queryModel = new QSqlQueryModel();
+
 
 }
 
@@ -16,6 +19,8 @@ DataBase::~DataBase()
     delete dataBase;
     delete simpleQuery;
     delete tableWidget;
+    delete tableModel;
+    delete queryModel;
 
 }
 
@@ -68,6 +73,7 @@ void DataBase::DisconnectFromDataBase(QString nameDb)
  */
 void DataBase::RequestToDB(QString request)
 {
+    this->request = request;
     *simpleQuery = QSqlQuery(*dataBase);
     simpleQuery->exec(request);
 
@@ -85,34 +91,48 @@ QSqlError DataBase::GetLastError()
 
 void DataBase::ReadAnswerFromBD(int type){
 
-    tableWidget->clear();
+    if (type == 0){
 
-    const int num_col = 2;
-    tableWidget->setColumnCount(num_col);
+           tableModel->setTable("Фильм");
+           tableModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
+           tableModel->select();
+           tableModel->setHeaderData(0, Qt::Horizontal, tr("Название фильма"));
+           tableModel->setHeaderData(1, Qt::Horizontal, tr("Описание фильма"));
 
-    tableWidget->setRowCount(0);
+           tableWidget->clear();
+           tableWidget->setColumnCount(tableModel->columnCount());
+           tableWidget->setRowCount(tableModel->rowCount());
+           tableWidget->setHorizontalHeaderLabels(QStringList() << "Название фильма" << "Описание фильма");
 
-    tableWidget->setHorizontalHeaderLabels(QStringList() << "Название фильма" << "Описание фильма");
+           for (int row = 0; row < tableModel->rowCount(); row++) {
+               for (int col = 0; col < tableModel->columnCount(); col++) {
 
+                   QModelIndex index = tableModel->index(row, col);
+                   QString text = tableModel->data(index).toString();
+                   QTableWidgetItem* item = new QTableWidgetItem(text);
+                   tableWidget->setItem(row, col, item);
+               }
+           }
+       }
+    else {
+           queryModel->setQuery(request, *dataBase);
 
-    uint32_t row_counter = 0;
+           tableWidget->clear();
+           tableWidget->setColumnCount(queryModel->columnCount());
+           tableWidget->setRowCount(queryModel->rowCount());
+           tableWidget->setHorizontalHeaderLabels(QStringList() << "Название фильма" << "Описание фильма");
 
-    while(simpleQuery->next()){
-        tableWidget->setRowCount(row_counter);
+           for (int row = 0; row < queryModel->rowCount(); row++) {
 
-        for(int numberCol = 0; numberCol < num_col; numberCol++){
+               for (int col = 0; col < queryModel->columnCount(); col++) {
 
-            QString text = simpleQuery->value(numberCol).toString();
+                   QModelIndex index = queryModel->index(row, col);
+                   QString text = queryModel->data(index).toString();
+                   QTableWidgetItem* item = new QTableWidgetItem(text);
+                   tableWidget->setItem(row, col, item);
+               }
+           }
+       }
 
-            QTableWidgetItem* item = new QTableWidgetItem(text);
-            tableWidget->setItem(tableWidget->rowCount()-1, numberCol, item);
-
-
-        }
-
-        row_counter++;
-    }
-
-    emit sig_SendDataFromDB(tableWidget, type);
-
+       emit sig_SendDataFromDB(tableWidget, type);
 }

@@ -1,13 +1,14 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+
 #include <QMainWindow>
+
+
 #include <QMessageBox>
 #include <QtConcurrent>
 #include "database.h"
 #include "dbdata.h"
-
-
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
