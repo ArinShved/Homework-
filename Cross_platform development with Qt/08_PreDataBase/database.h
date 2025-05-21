@@ -59,7 +59,7 @@ public:
 
 signals:
 
-   void sig_SendDataFromDB(const QTableWidget *tableWg, int typeR);
+   void sig_SendDataFromDB(QAbstractTableModel *model, int typeR);
    void sig_SendStatusConnection(bool);
    void sig_SendStatusRequest(QSqlError);
 

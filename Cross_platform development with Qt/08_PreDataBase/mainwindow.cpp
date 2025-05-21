@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     dataDb = new DbData(this);
     dataBase = new DataBase(this);
     msg = new QMessageBox(this);
+    tableView = new QTableView();
 
     //Установим размер вектора данных для подключения к БД
     dataForConnect.resize(NUM_DATA_FOR_CONNECT_TO_DB);
@@ -126,28 +127,13 @@ void MainWindow::on_pb_request_clicked()
  * \param widget
  * \param typeRequest
  */
-void MainWindow::ScreenDataFromDB( const QTableWidget *widget, int typeRequest)
+void MainWindow::ScreenDataFromDB(QAbstractTableModel *model, int typeRequest)
 {
-
-    ui->tb_result->clear();
-    ui->tb_result->setRowCount(0);
-    ui->tb_result->setColumnCount(0);
-
-    ui->tb_result->setColumnCount(widget->columnCount());
-    ui->tb_result->setRowCount(widget->rowCount());
-
-    ui->tb_result->setHorizontalHeaderLabels(QStringList() << "Название фильма" << "Описание фильма");
-
-    for(int row = 0; row < widget->rowCount(); row++) {
-        for(int col = 0; col < widget->columnCount(); col++) {
-
-            QTableWidgetItem *item = widget->item(row, col)->clone();
-            ui->tb_result->setItem(row, col, item);
-        }
-    }
-
-    ui->tb_result->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->tb_result->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    model->setHeaderData(0, Qt::Horizontal, tr("Название фильма"));
+    model->setHeaderData(1, Qt::Horizontal, tr("Описание фильма"));
+    ui->tv_result->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tv_result->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tv_result->setModel(model);
 }
 /*!
  * \brief Метод изменяет стотояние формы в зависимости от статуса подключения к БД
@@ -187,8 +173,7 @@ void MainWindow::ReceiveStatusRequestToDb(QSqlError err){
 
 void MainWindow::on_pb_clear_clicked()
 {
-    ui->tb_result->clear();
-    ui->tb_result->setRowCount(0);
-    ui->tb_result->setColumnCount(0);
+    ui->tv_result->setModel(nullptr);
+
 }
 

@@ -96,43 +96,10 @@ void DataBase::ReadAnswerFromBD(int type){
            tableModel->setTable("Фильм");
            tableModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
            tableModel->select();
-           tableModel->setHeaderData(0, Qt::Horizontal, tr("Название фильма"));
-           tableModel->setHeaderData(1, Qt::Horizontal, tr("Описание фильма"));
-
-           tableWidget->clear();
-           tableWidget->setColumnCount(tableModel->columnCount());
-           tableWidget->setRowCount(tableModel->rowCount());
-           tableWidget->setHorizontalHeaderLabels(QStringList() << "Название фильма" << "Описание фильма");
-
-           for (int row = 0; row < tableModel->rowCount(); row++) {
-               for (int col = 0; col < tableModel->columnCount(); col++) {
-
-                   QModelIndex index = tableModel->index(row, col);
-                   QString text = tableModel->data(index).toString();
-                   QTableWidgetItem* item = new QTableWidgetItem(text);
-                   tableWidget->setItem(row, col, item);
-               }
-           }
+           emit sig_SendDataFromDB(tableModel, type);
        }
     else {
            queryModel->setQuery(request, *dataBase);
-
-           tableWidget->clear();
-           tableWidget->setColumnCount(queryModel->columnCount());
-           tableWidget->setRowCount(queryModel->rowCount());
-           tableWidget->setHorizontalHeaderLabels(QStringList() << "Название фильма" << "Описание фильма");
-
-           for (int row = 0; row < queryModel->rowCount(); row++) {
-
-               for (int col = 0; col < queryModel->columnCount(); col++) {
-
-                   QModelIndex index = queryModel->index(row, col);
-                   QString text = queryModel->data(index).toString();
-                   QTableWidgetItem* item = new QTableWidgetItem(text);
-                   tableWidget->setItem(row, col, item);
-               }
-           }
-       }
-
-       emit sig_SendDataFromDB(tableWidget, type);
+           emit sig_SendDataFromDB(queryModel, type);
+    }
 }
